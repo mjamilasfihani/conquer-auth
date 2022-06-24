@@ -1,0 +1,19 @@
+{
+    "name": "mjamilasfihani/conquer-auth",
+    "description": "An authentication library for CodeIgniter4",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mjamilasfihani\\ConquerAuth\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohammad Jamil Asfihani"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {}
+}
