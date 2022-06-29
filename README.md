@@ -4,7 +4,7 @@ An authentication library for CodeIgniter 4.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [composer](https://getcomposer.org/) to install.
 
 ```bash
 composer install mjamilasfihani/conquer-auth
