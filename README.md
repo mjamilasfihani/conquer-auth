@@ -1,6 +1,6 @@
 # ConquerAuth
 
-An authentication library for CodeIgniter 4.
+An authentication library for CodeIgniter4.
 
 ## Installation
 
