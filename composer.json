@@ -1,19 +1,36 @@
 {
     "name": "mjamilasfihani/conquer-auth",
     "description": "An authentication library for CodeIgniter4",
-    "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "ConquerAuth\\": "src/"
-        }
-    },
+    "type": "library",
+    "keywords": [
+        "codeigniter",
+        "authentication",
+        "authorization"
+    ],
     "authors": [
         {
-            "name": "Mohammad Jamil Asfihani"
+            "name": "Mohammad Jamil Asfihani",
+            "email": "mohammadjamilasfihani@gmail.com",
+            "homepage": "https://github.com/mjamilasfihani",
+            "role": "Developer"
         }
     ],
+    "homepage": "https://github.com/mjamilasfihani/conquer-auth",
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "require-dev": {
+        "codeigniter4/framework": "^4.1"
+    },
+    "provide": {
+        "codeigniter4/authentication-implementation": "1.0"
+    },
     "minimum-stability": "dev",
-    "require": {},
-    "require-dev": {}
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Conquer\\Auth\\": "src/"
+        }
+    }
 }
