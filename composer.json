@@ -53,6 +53,8 @@
     "scripts": {
         "post-autoload-dump": [
             "@composer normalize"
-        ]
+        ],
+        "lint": "php-cs-fixer fix --ansi --verbose --diff --using-cache=yes",
+        "sniff": "php-cs-fixer fix --ansi --verbose --dry-run --diff"
     }
 }
