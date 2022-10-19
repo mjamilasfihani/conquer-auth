@@ -2,7 +2,7 @@
 
 An authentication library for CodeIgniter4.
 
-##
+## Prerequisites
 
 Usage of Conquer\Auth requires the following:
 
