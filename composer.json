@@ -22,7 +22,8 @@
     },
     "require-dev": {
         "codeigniter4/devkit": "^1.1",
-        "codeigniter4/framework": "^4.1"
+        "codeigniter4/framework": "^4.1",
+        "ergebnis/composer-normalize": "^2.28"
     },
     "provide": {
         "codeigniter4/authentication-implementation": "1.0"
@@ -43,10 +44,15 @@
         }
     },
     "config": {
-        "optimize-autoloader": true,
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
             "phpstan/extension-installer": true
-        }
+        },
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@composer normalize"
+        ]
     }
 }
