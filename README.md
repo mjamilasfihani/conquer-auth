@@ -1,5 +1,5 @@
 # ConquerAuth
-An authentication library for CodeIgniter4.
+An authentication library for CodeIgniter4. (Inspired from `Myth\Auth` and `Laravel\Breeze`)
 
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPUnit/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpunit.yml)
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPStan/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpstan.yml)
