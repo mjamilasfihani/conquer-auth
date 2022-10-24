@@ -1,12 +1,12 @@
 <?php
 
-use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\FeatureTestTrait;
+use Tests\Support\ConquerAuthTestCase;
 
 /**
  * @internal
  */
-final class FeaturesTest extends CIUnitTestCase
+final class FeaturesTest extends ConquerAuthTestCase
 {
     use FeatureTestTrait;
 
@@ -16,12 +16,10 @@ final class FeaturesTest extends CIUnitTestCase
     public function testHasActivateFeature()
     {
         // activate test
-        $activate_account = route_to('auth.activate-account');
-        $this->get($activate_account)->assertIsInt(200);
+        $this->get($this->routeToActivateAccount())->assertIsInt(200);
 
         // resend activate test
-        $resend_activate_account = route_to('auth.resend-activate-account');
-        $this->get($resend_activate_account)->assertIsInt(200);
+        $this->get($this->routeToResendActivateAccount())->assertIsInt(200);
     }
 
     /**
@@ -30,14 +28,12 @@ final class FeaturesTest extends CIUnitTestCase
     public function testHasForgotFeature()
     {
         // forgot test
-        $forgot = route_to('auth.forgot');
-        $this->get($forgot)->assertIsInt(200);
-        $this->post('forgot')->assertIsInt(200);
+        $this->get($this->routeToForgot())->assertIsInt(200);
+        $this->post($this->routeToForgot())->assertIsInt(200);
 
         // reset test
-        $reset_password = route_to('auth.reset-password');
-        $this->get($reset_password)->assertIsInt(200);
-        $this->post('reset-password')->assertIsInt(200);
+        $this->get($this->routeToResetPassword())->assertIsInt(200);
+        $this->post($this->routeToResetPassword())->assertIsInt(200);
     }
 
     /**
@@ -46,13 +42,11 @@ final class FeaturesTest extends CIUnitTestCase
     public function testHasLoginFeature()
     {
         // login test
-        $login = route_to('auth.login');
-        $this->get($login)->assertIsInt(200);
-        $this->post('login')->assertIsInt(200);
+        $this->get($this->routeToLogin())->assertIsInt(200);
+        $this->post($this->routeToLogin())->assertIsInt(200);
 
         // logout test
-        $logout = route_to(route_to('auth.logout'));
-        $this->get($logout)->assertIsInt(200);
+        $this->get($this->routeToLogout())->assertIsInt(200);
     }
 
     /**
@@ -61,8 +55,7 @@ final class FeaturesTest extends CIUnitTestCase
     public function testHasRegisterFeature()
     {
         // register test
-        $register = route_to('auth.register');
-        $this->get($register)->assertIsInt(200);
-        $this->post('register')->assertIsInt(200);
+        $this->get($this->routeToRegister())->assertIsInt(200);
+        $this->post($this->routeToRegister())->assertIsInt(200);
     }
 }
