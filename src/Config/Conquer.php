@@ -9,19 +9,25 @@ class Conquer extends BaseConfig
     /**
      * Ever heard about `siteName`? Yes, it's mentioned in CodeIgniter4
      * official docs. I bring it here, feel free to change it.
+     *
+     * @var string
      */
-    public string $siteName = 'ConquerAuth';
+    public $siteName = 'ConquerAuth';
 
     /**
      * This is your landing page (route name) after user success to login,
      * i.e $landingRoute = 'dashboard'.
+     *
+     * @var string
      */
-    public string $landingRoute = '/';
+    public $landingRoute = '/';
 
     /**
      * Reserved routes.
+     *
+     * @var string[]
      */
-    public array $reservedRoutes = [
+    public $reservedRoutes = [
         'login'                   => 'login',
         'logout'                  => 'logout',
         'register'                => 'register',
@@ -33,21 +39,29 @@ class Conquer extends BaseConfig
 
     /**
      * Account activation's feature.
+     *
+     * @var bool
      */
-    public bool $hasActivate = true;
+    public $hasActivate = true;
 
     /**
      * Forgot & Reset password's feature.
+     *
+     * @var bool
      */
-    public bool $hasForgot = true;
+    public $hasForgot = true;
 
     /**
      * Login/out's feature.
+     *
+     * @var bool
      */
-    public bool $hasLogin = true;
+    public $hasLogin = true;
 
     /**
      * Registration's feature.
+     *
+     * @var bool
      */
-    public bool $hasRegister = true;
+    public $hasRegister = true;
 }

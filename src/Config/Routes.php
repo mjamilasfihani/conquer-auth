@@ -13,7 +13,7 @@ $routes->group('', static function ($routes) {
      * Conquer\Auth's config
      */
     $conquer        = config('conquer');
-    $reservedRoutes = (array) $conquer->reservedRoutes;
+    $reservedRoutes = $conquer->reservedRoutes;
 
     // Login/out
     $routes->get($reservedRoutes['login'], [AuthenticatedSessionController::class, 'create'], ['as' => 'auth.login']);
