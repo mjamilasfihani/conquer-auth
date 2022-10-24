@@ -9,6 +9,6 @@ abstract class BaseFeature
      */
     protected static function getConfig()
     {
-        return config('conquer');
+        return config('Conquer');
     }
 }

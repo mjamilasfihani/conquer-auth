@@ -49,8 +49,8 @@
         "optimize-autoloader": true
     },
     "scripts": {
-        "lint": "vendor/bin/php-cs-fixer fix --ansi --verbose --diff --using-cache=yes",
-        "sniff": "vendor/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff",
+        "lint": "vendor/bin/php-cs-fixer fix --verbose --ansi --using-cache=no --diff",
+        "sniff": "vendor/bin/php-cs-fixer fix --verbose --ansi --dry-run --using-cache=no --diff",
         "test": "vendor/bin/phpunit --verbose --coverage-text"
     }
 }

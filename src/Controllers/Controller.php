@@ -43,6 +43,6 @@ abstract class Controller extends SystemController
         parent::initController($request, $response, $logger);
 
         // Init Conquer\Auth's config
-        $this->conquer = config('conquer');
+        $this->conquer = config('Conquer');
     }
 }
