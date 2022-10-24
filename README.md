@@ -6,8 +6,6 @@ An authentication library for CodeIgniter4.
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/Deptrac/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/deptrac.yml)
 [![Coverage Status](https://coveralls.io/repos/github/mjamilasfihani/conquer-auth/badge.svg?branch=develop)](https://coveralls.io/github/mjamilasfihani/conquer-auth?branch=develop)
 
-Inspired from `Myth\Auth` and `Laravel\Breeze` packages.
-
 ## Prerequisites
 Usage of Conquer\Auth requires the following:
 
@@ -32,3 +30,6 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+### Ideas
+I was inspired by `Myth\Auth` and `Laravel\Breeze` packages.
