@@ -51,6 +51,9 @@
     "scripts": {
         "lint": "vendor/bin/php-cs-fixer fix --verbose --ansi --using-cache=no --diff",
         "sniff": "vendor/bin/php-cs-fixer fix --verbose --ansi --dry-run --using-cache=no --diff",
-        "test": "vendor/bin/phpunit --verbose --coverage-text"
+        "test": [
+            "vendor/bin/phpunit --verbose --coverage-text",
+            "vendor/bin/phpstan analyze"
+        ]
     }
 }
