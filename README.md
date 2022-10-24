@@ -1,9 +1,7 @@
 # ConquerAuth
-
 An authentication library for CodeIgniter4.
 
 ## Prerequisites
-
 Usage of Conquer\Auth requires the following:
 
 - A [CodeIgniter 4.2.0+](https://github.com/codeigniter4/CodeIgniter4/) based project
@@ -11,7 +9,6 @@ Usage of Conquer\Auth requires the following:
 - PHP 7.4+
 
 ## Installation
-
 Use the package manager [composer](https://getcomposer.org/) to install.
 
 ```bash
@@ -19,7 +16,6 @@ composer install mjamilasfihani/conquer-auth
 ```
 
 ## Usage
-
 Coming Soon :)
 
 ## Contributing
