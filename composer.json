@@ -22,7 +22,8 @@
     },
     "require-dev": {
         "codeigniter4/devkit": "^1.1",
-        "codeigniter4/framework": "^4.2"
+        "codeigniter4/framework": "^4.2",
+        "qossmic/deptrac-shim": "^0.24.0"
     },
     "provide": {
         "codeigniter4/authentication-implementation": "1.0"
@@ -53,7 +54,8 @@
         "sniff": "vendor/bin/php-cs-fixer fix --verbose --ansi --dry-run --using-cache=no --diff",
         "test": [
             "vendor/bin/phpunit --verbose --coverage-text",
-            "vendor/bin/phpstan analyze"
+            "vendor/bin/phpstan analyze",
+            "vendor/bin/deptrac analyze --cache-file=build/deptrac.cache"
         ]
     }
 }
