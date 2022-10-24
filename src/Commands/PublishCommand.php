@@ -55,6 +55,5 @@ class PublishCommand extends BaseCommand
      */
     public function run(array $params)
     {
-
     }
 }
