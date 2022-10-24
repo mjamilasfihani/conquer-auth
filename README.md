@@ -3,6 +3,7 @@ An authentication library for CodeIgniter4.
 
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPCSFixer/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpcsfixer.yml)
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPUnit/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpunit.yml)
+
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPStan/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpstan.yml)
 [![Coverage Status](https://coveralls.io/repos/github/mjamilasfihani/conquer-auth/badge.svg?branch=develop)](https://coveralls.io/github/mjamilasfihani/conquer-auth?branch=develop)
 
