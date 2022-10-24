@@ -12,7 +12,7 @@ $routes->group('', static function ($routes) {
     /**
      * Conquer\Auth's config
      */
-    $conquer        = config('conquer');
+    $conquer        = config('Conquer');
     $reservedRoutes = $conquer->reservedRoutes;
 
     // Login/out
