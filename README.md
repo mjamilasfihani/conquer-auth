@@ -1,6 +1,9 @@
 # ConquerAuth
 An authentication library for CodeIgniter4.
 
+[![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPUnit/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpunit.yml)
+[![Coverage Status](https://coveralls.io/repos/github/mjamilasfihani/conquer-auth/badge.svg?branch=develop)](https://coveralls.io/github/mjamilasfihani/conquer-auth?branch=develop)
+
 ## Prerequisites
 Usage of Conquer\Auth requires the following:
 
