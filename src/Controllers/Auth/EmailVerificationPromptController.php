@@ -9,7 +9,7 @@ use Conquer\Auth\Features;
 class EmailVerificationPromptController extends BaseController
 {
     /**
-     * @return string
+     * @return mixed
      *
      * @throws \CodeIgniter\Exceptions\PageNotFoundException
      */

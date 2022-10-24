@@ -10,7 +10,7 @@ use Exception;
 class RegisteredUserController extends Controller
 {
     /**
-     * @return string
+     * @return mixed
      *
      * @throws \CodeIgniter\Exceptions\PageNotFoundException
      */
