@@ -1,12 +1,12 @@
 # ConquerAuth
 An authentication library for CodeIgniter4.
 
-Inspired from `Myth\Auth` and `Laravel\Breeze` packages.
-
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPUnit/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpunit.yml)
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/PHPStan/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/phpstan.yml)
 [![](https://github.com/mjamilasfihani/conquer-auth/workflows/Deptrac/badge.svg)](https://github.com/mjamilasfihani/conquer-auth/actions/workflows/deptrac.yml)
 [![Coverage Status](https://coveralls.io/repos/github/mjamilasfihani/conquer-auth/badge.svg?branch=develop)](https://coveralls.io/github/mjamilasfihani/conquer-auth?branch=develop)
+
+Inspired from `Myth\Auth` and `Laravel\Breeze` packages.
 
 ## Prerequisites
 Usage of Conquer\Auth requires the following:
