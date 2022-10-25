@@ -14,9 +14,6 @@ final class ConquerHelperTest extends ConquerAuthTestCase
         helper('conquer');
     }
 
-    /**
-     * @return void
-     */
     public function testEncrypterHelper()
     {
         $obj      = config('Encryption');
