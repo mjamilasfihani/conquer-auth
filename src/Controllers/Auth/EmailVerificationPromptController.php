@@ -2,11 +2,10 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
-use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use Conquer\Auth\Features;
+use Conquer\Auth\Controllers\Controller;
 
-class EmailVerificationPromptController extends BaseController
+class EmailVerificationPromptController extends Controller
 {
     /**
      * @return mixed
@@ -15,7 +14,7 @@ class EmailVerificationPromptController extends BaseController
      */
     public function create()
     {
-        if (! Features::hasActivate()) {
+        if (! $this->conquer->hasActivate) {
             throw PageNotFoundException::forPageNotFound();
         }
 

@@ -4,7 +4,6 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features;
 
 class EmailResendVerificationController extends Controller
 {
@@ -15,7 +14,7 @@ class EmailResendVerificationController extends Controller
      */
     public function create()
     {
-        if (! Features::hasActivate()) {
+        if (! $this->conquer->hasActivate) {
             throw PageNotFoundException::forPageNotFound();
         }
 

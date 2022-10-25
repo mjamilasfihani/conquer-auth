@@ -4,7 +4,6 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features;
 use Exception;
 
 class RegisteredUserController extends Controller
@@ -16,7 +15,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        if (! Features::hasRegister()) {
+        if (! $this->conquer->hasRegister) {
             throw PageNotFoundException::forPageNotFound();
         }
 
@@ -31,7 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function store()
     {
-        if (! Features::hasRegister()) {
+        if (! $this->conquer->hasRegister) {
             throw PageNotFoundException::forPageNotFound();
         }
 

@@ -4,7 +4,6 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features;
 use Exception;
 
 class NewPasswordController extends Controller
@@ -16,7 +15,7 @@ class NewPasswordController extends Controller
      */
     public function create()
     {
-        if (! Features::hasForgot()) {
+        if (! $this->conquer->hasForgot) {
             throw PageNotFoundException::forPageNotFound();
         }
 
@@ -31,7 +30,7 @@ class NewPasswordController extends Controller
      */
     public function store()
     {
-        if (! Features::hasForgot()) {
+        if (! $this->conquer->hasForgot) {
             throw PageNotFoundException::forPageNotFound();
         }
 

@@ -4,7 +4,6 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features;
 use Exception;
 
 class AuthenticatedSessionController extends Controller
@@ -16,7 +15,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        if (! Features::hasLogin()) {
+        if (! $this->conquer->hasLogin) {
             throw PageNotFoundException::forPageNotFound();
         }
 
@@ -31,7 +30,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store()
     {
-        if (! Features::hasLogin()) {
+        if (! $this->conquer->hasLogin) {
             throw PageNotFoundException::forPageNotFound();
         }
 
@@ -45,7 +44,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy()
     {
-        if (! Features::hasLogin()) {
+        if (! $this->conquer->hasLogin) {
             throw PageNotFoundException::forPageNotFound();
         }
 
