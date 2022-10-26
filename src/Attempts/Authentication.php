@@ -20,12 +20,12 @@ final class Authentication
     use RegisteredUser;
 
     /**
-     * @var IncomingRequest
+     * Instance of the request.
      */
-    protected $request;
+    protected IncomingRequest $request;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(IncomingRequest $incomingRequest)
     {
