@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Authorized;
 use Conquer\Auth\Features\Auth;
 
-class EmailVerificationPromptRequest implements FilterInterface
+class EmailVerificationPromptRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -31,6 +31,9 @@ class EmailVerificationPromptRequest implements FilterInterface
         if (Authorized::disable('activate') || Auth::check()) {
             throw PageNotFoundException::forPageNotFound();
         }
+
+        // continue
+        return $request;
     }
 
     /**

@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Authorized;
 use Conquer\Auth\Features\Auth;
 
-class PasswordResetLinkRequest implements FilterInterface
+class PasswordResetLinkRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -31,6 +31,8 @@ class PasswordResetLinkRequest implements FilterInterface
         if (Authorized::disable('forgot') || Auth::check()) {
             throw PageNotFoundException::forPageNotFound();
         }
+
+        return $request;
     }
 
     /**

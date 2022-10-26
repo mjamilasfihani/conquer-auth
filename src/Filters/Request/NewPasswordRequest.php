@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Authorized;
 use Conquer\Auth\Features\Auth;
 
-class NewPasswordRequest implements FilterInterface
+class NewPasswordRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -31,6 +31,9 @@ class NewPasswordRequest implements FilterInterface
         if (Authorized::disable('forgot') || Auth::check()) {
             throw PageNotFoundException::forPageNotFound();
         }
+
+        // continue
+        return $request;
     }
 
     /**

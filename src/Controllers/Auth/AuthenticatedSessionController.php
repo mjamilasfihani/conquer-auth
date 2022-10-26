@@ -42,6 +42,6 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::logout();
 
-        return 200;
+        return redirect('/');
     }
 }

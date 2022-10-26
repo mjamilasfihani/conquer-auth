@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Authorized;
 use Conquer\Auth\Features\Auth;
 
-class AuthenticatedSessionRequest implements FilterInterface
+class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -31,6 +31,21 @@ class AuthenticatedSessionRequest implements FilterInterface
         if (Authorized::disable('login') || Auth::check()) {
             throw PageNotFoundException::forPageNotFound();
         }
+
+        // rule's set
+        $this->validation->setRule('email', lang('Conquer.email'), ['required']);
+        $this->validation->setRule('password', lang('Conquer.password'), ['required']);
+        $this->validation->setRule('remember_me', lang('Conquer.remember_me'), []);
+
+        // checking
+        if (! $this->validation->withRequest($request)->run()) {
+            return redirect('auth.login')
+                ->with('messages', $this->validation->getErrors())
+                ->withInput();
+        }
+
+        // continue
+        return $request;
     }
 
     /**

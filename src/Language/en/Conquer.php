@@ -2,4 +2,8 @@
 
 namespace Conquer\Auth\Language\en;
 
-return [];
+return [
+    'email'       => 'Email',
+    'password'    => 'Password',
+    'remember_me' => 'Remember Me',
+];
