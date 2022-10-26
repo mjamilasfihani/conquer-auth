@@ -2,6 +2,7 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
+use Conquer\Auth\Attempts\Authentication;
 use Conquer\Auth\Controllers\Controller;
 
 class EmailResendVerificationController extends Controller
@@ -11,6 +12,8 @@ class EmailResendVerificationController extends Controller
      */
     public function create()
     {
-        return 200;
+        return Authentication::withRequest($this->request)
+            ->emailResendVerificationAttempt()
+            ->getResult();
     }
 }

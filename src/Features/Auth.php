@@ -2,8 +2,6 @@
 
 namespace Conquer\Auth\Features;
 
-use CodeIgniter\HTTP\IncomingRequest;
-use Conquer\Auth\Attempts\Authentication;
 use Conquer\Auth\Models\Users;
 
 class Auth
@@ -34,7 +32,9 @@ class Auth
      */
     public static function user()
     {
-        return model(Users::class)->find(self::id());
+        helper('conquer');
+
+        return model(Users::class)->find(str_decrypt(self::id()));
     }
 
     /**
@@ -43,13 +43,5 @@ class Auth
     public static function logout()
     {
         session()->remove(self::SESSION_NAME);
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function attempt(IncomingRequest $request, bool $remember_me = false)
-    {
-        return new Authentication($request, $remember_me);
     }
 }

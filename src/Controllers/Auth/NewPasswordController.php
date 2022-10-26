@@ -3,6 +3,7 @@
 namespace Conquer\Auth\Controllers\Auth;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Conquer\Auth\Attempts\Authentication;
 use Conquer\Auth\Authorized;
 use Conquer\Auth\Controllers\Controller;
 use Conquer\Auth\Features\Auth;
@@ -29,6 +30,8 @@ class NewPasswordController extends Controller
      */
     public function store()
     {
-        return 200;
+        return Authentication::withRequest($this->request)
+            ->newPasswordAttempt()
+            ->getResult();
     }
 }
