@@ -24,7 +24,7 @@ class Auth
      */
     public static function check()
     {
-        return self::id() ? true : false;
+        return (bool) self::id();
     }
 
     /**

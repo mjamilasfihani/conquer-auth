@@ -5,10 +5,7 @@ namespace Conquer\Auth\Controllers;
 use CodeIgniter\Controller as SystemController;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
-use CodeIgniter\HTTP\RequestInterface;
-use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Authorized;
-use Psr\Log\LoggerInterface;
 
 abstract class Controller extends SystemController
 {
@@ -27,15 +24,6 @@ abstract class Controller extends SystemController
      * @var array
      */
     protected $helpers = ['conquer'];
-
-    /**
-     * Constructor.
-     */
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
-    {
-        // Do Not Edit This Line
-        parent::initController($request, $response, $logger);
-    }
 
     /**
      * Alias of view.

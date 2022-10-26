@@ -10,23 +10,19 @@ class Conquer extends BaseConfig
     /**
      * Ever heard about `siteName`? Yes, it's mentioned in CodeIgniter4
      * official docs. I bring it here, feel free to change it.
-     *
-     * @var string
      */
-    public $siteName = 'ConquerAuth';
+    public string $siteName = 'ConquerAuth';
 
     /**
      * This is your landing page (route name) after user success to login,
      * i.e $landingRoute = 'dashboard'.
-     *
-     * @var string
      */
-    public $landingRoute = '/';
+    public string $landingRoute = '/';
 
     /**
-     * @var array
+     * Featured of Conquer\Auth.
      */
-    public $features = [
+    public array $features = [
         'activate' => Authorized::ENABLE,
         'forgot'   => Authorized::ENABLE,
         'login'    => Authorized::ENABLE,

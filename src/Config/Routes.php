@@ -1,5 +1,7 @@
 <?php
 
+namespace Conquer\Auth\Config;
+
 use Conquer\Auth\Controllers\Auth\AuthenticatedSessionController;
 use Conquer\Auth\Controllers\Auth\EmailResendVerificationController;
 use Conquer\Auth\Controllers\Auth\EmailVerificationPromptController;

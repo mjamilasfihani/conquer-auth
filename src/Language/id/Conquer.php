@@ -1,5 +1,5 @@
 <?php
 
-// Conquer\Auth ID Lang
+namespace Conquer\Auth\Language\en;
 
 return [];
