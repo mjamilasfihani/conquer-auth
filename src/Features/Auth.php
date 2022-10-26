@@ -32,9 +32,7 @@ class Auth
      */
     public static function user()
     {
-        helper('conquer');
-
-        return model(Users::class)->find(str_decrypt(self::id()));
+        return model(Users::class)->find(self::id());
     }
 
     /**

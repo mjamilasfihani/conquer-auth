@@ -40,6 +40,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy()
     {
-        return Auth::logout();
+        Auth::logout();
+
+        return 200;
     }
 }
