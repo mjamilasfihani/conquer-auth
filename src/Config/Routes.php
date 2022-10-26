@@ -2,6 +2,7 @@
 
 namespace Conquer\Auth\Config;
 
+use CodeIgniter\Router\RouteCollection;
 use Conquer\Auth\Controllers\Auth\AuthenticatedSessionController;
 use Conquer\Auth\Controllers\Auth\EmailResendVerificationController;
 use Conquer\Auth\Controllers\Auth\EmailVerificationPromptController;
