@@ -6,31 +6,30 @@ use Conquer\Auth\Controllers\Auth\EmailVerificationPromptController;
 use Conquer\Auth\Controllers\Auth\NewPasswordController;
 use Conquer\Auth\Controllers\Auth\PasswordResetLinkController;
 use Conquer\Auth\Controllers\Auth\RegisteredUserController;
+use Conquer\Auth\Filters\Request\AuthenticatedSessionRequest;
+use Conquer\Auth\Filters\Request\EmailResendVerificationRequest;
+use Conquer\Auth\Filters\Request\EmailVerificationPromptRequest;
+use Conquer\Auth\Filters\Request\NewPasswordRequest;
+use Conquer\Auth\Filters\Request\PasswordResetLinkRequest;
+use Conquer\Auth\Filters\Request\RegisteredUserRequest;
 
-// Conquer\Auth Routes
 $routes->group('', static function ($routes) {
-    /**
-     * Conquer\Auth's config
-     */
-    $conquer        = config('Conquer');
-    $reservedRoutes = $conquer->reservedRoutes;
-
-    // Login/out
-    $routes->get($reservedRoutes['login'], [AuthenticatedSessionController::class, 'create'], ['as' => 'auth.login']);
-    $routes->post($reservedRoutes['login'], [AuthenticatedSessionController::class, 'store']);
-    $routes->get($reservedRoutes['logout'], [AuthenticatedSessionController::class, 'destroy'], ['as' => 'auth.logout']);
+    // Login/Logout
+    $routes->get('login', [AuthenticatedSessionController::class, 'create'], ['as' => 'auth.login']);
+    $routes->post('login', [AuthenticatedSessionController::class, 'store'], ['filter' => AuthenticatedSessionRequest::class]);
+    $routes->get('logout', [AuthenticatedSessionController::class, 'destroy'], ['as' => 'auth.logout']);
 
     // Registration
-    $routes->get($reservedRoutes['register'], [RegisteredUserController::class, 'create'], ['as' => 'auth.register']);
-    $routes->post($reservedRoutes['register'], [RegisteredUserController::class, 'store']);
+    $routes->get('register', [RegisteredUserController::class, 'create'], ['as' => 'auth.register']);
+    $routes->post('register', [RegisteredUserController::class, 'store'], ['filter' => RegisteredUserRequest::class]);
 
     // Activation
-    $routes->get($reservedRoutes['activate-account'], [EmailVerificationPromptController::class, 'create'], ['as' => 'auth.activate-account']);
-    $routes->get($reservedRoutes['resend-activate-account'], [EmailResendVerificationController::class, 'create'], ['as' => 'auth.resend-activate-account']);
+    $routes->get('activate-account', [EmailVerificationPromptController::class, 'create'], ['as' => 'auth.activate-account', 'filter' => EmailVerificationPromptRequest::class]);
+    $routes->get('resend-activate-account', [EmailResendVerificationController::class, 'create'], ['as' => 'auth.resend-activate-account', 'filter' => EmailResendVerificationRequest::class]);
 
-    // Forgot/Reset
-    $routes->get($reservedRoutes['forgot'], [PasswordResetLinkController::class, 'create'], ['as' => 'auth.forgot']);
-    $routes->post($reservedRoutes['forgot'], [PasswordResetLinkController::class, 'store']);
-    $routes->get($reservedRoutes['reset-password'], [NewPasswordController::class, 'create'], ['as' => 'auth.reset-password']);
-    $routes->post($reservedRoutes['reset-password'], [NewPasswordController::class, 'store']);
+    // Forgot/Reset Password
+    $routes->get('forgot-password', [PasswordResetLinkController::class, 'create'], ['as' => 'auth.forgot-password']);
+    $routes->post('forgot-password', [PasswordResetLinkController::class, 'store'], ['filter' => PasswordResetLinkRequest::class]);
+    $routes->get('reset-password', [NewPasswordController::class, 'create'], ['as' => 'auth.reset-password']);
+    $routes->post('reset-password', [NewPasswordController::class, 'store'], ['filter' => NewPasswordRequest::class]);
 });

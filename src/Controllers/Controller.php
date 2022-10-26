@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Conquer\Auth\Authorized;
 use Psr\Log\LoggerInterface;
 
 abstract class Controller extends SystemController
@@ -28,21 +29,19 @@ abstract class Controller extends SystemController
     protected $helpers = ['conquer'];
 
     /**
-     * Instance of Conquer\Auth's Config.
-     *
-     * @var mixed
-     */
-    protected $conquer;
-
-    /**
      * Constructor.
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
+    }
 
-        // Init Conquer\Auth's config
-        $this->conquer = config('Conquer');
+    /**
+     * Alias of view.
+     */
+    protected function render(string $name, array $data = [], array $options = []): string
+    {
+        return view($name, array_merge($data, ['authorized' => Authorized::class]), $options);
     }
 }

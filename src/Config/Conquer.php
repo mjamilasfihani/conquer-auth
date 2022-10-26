@@ -3,6 +3,7 @@
 namespace Conquer\Auth\Config;
 
 use CodeIgniter\Config\BaseConfig;
+use Conquer\Auth\Authorized;
 
 class Conquer extends BaseConfig
 {
@@ -23,45 +24,12 @@ class Conquer extends BaseConfig
     public $landingRoute = '/';
 
     /**
-     * Reserved routes.
-     *
-     * @var string[]
+     * @var array
      */
-    public $reservedRoutes = [
-        'login'                   => 'login',
-        'logout'                  => 'logout',
-        'register'                => 'register',
-        'activate-account'        => 'activate-account',
-        'resend-activate-account' => 'resend-activate-account',
-        'forgot'                  => 'forgot',
-        'reset-password'          => 'reset-password',
+    public $features = [
+        'activate' => Authorized::ENABLE,
+        'forgot'   => Authorized::ENABLE,
+        'login'    => Authorized::ENABLE,
+        'register' => Authorized::ENABLE,
     ];
-
-    /**
-     * Account activation's feature.
-     *
-     * @var bool
-     */
-    public $hasActivate = true;
-
-    /**
-     * Forgot & Reset password's feature.
-     *
-     * @var bool
-     */
-    public $hasForgot = true;
-
-    /**
-     * Login/out's feature.
-     *
-     * @var bool
-     */
-    public $hasLogin = true;
-
-    /**
-     * Registration's feature.
-     *
-     * @var bool
-     */
-    public $hasRegister = true;
 }

@@ -18,8 +18,8 @@ final class FeaturesTest extends ConquerAuthTestCase
 
     public function testHasForgotFeature()
     {
-        $this->get('forgot')->assertIsInt(200);
-        $this->post('forgot')->assertIsInt(200);
+        $this->get('forgot-password')->assertIsInt(200);
+        $this->post('forgot-password')->assertIsInt(200);
         $this->get('reset-password')->assertIsInt(200);
         $this->post('reset-password')->assertIsInt(200);
     }
