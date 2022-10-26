@@ -2,6 +2,7 @@
 
 namespace Conquer\Auth\Attempts;
 
+use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use Conquer\Auth\Attempts\Core\AuthenticatedSession;
 use Conquer\Auth\Attempts\Core\EmailResendVerification;
@@ -20,24 +21,30 @@ final class Authentication
     use RegisteredUser;
 
     /**
-     * Instance of the request.
+     * Instance of the main Request object.
+     *
+     * @var CLIRequest|IncomingRequest
      */
-    protected IncomingRequest $request;
+    protected $request;
 
     /**
      * Constructor.
+     *
+     * @param mixed $request
      */
-    public function __construct(IncomingRequest $incomingRequest)
+    public function __construct($request)
     {
-        $this->request = $incomingRequest;
+        $this->request = $request;
     }
 
     /**
      * Initialize the class itself.
+     *
+     * @param mixed $request
      */
-    public static function withRequest(IncomingRequest $incomingRequest): Authentication
+    public static function withRequest($request): Authentication
     {
-        return new self($incomingRequest);
+        return new self($request);
     }
 
     /**
