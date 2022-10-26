@@ -13,6 +13,7 @@ use Conquer\Auth\Filters\Request\NewPasswordRequest;
 use Conquer\Auth\Filters\Request\PasswordResetLinkRequest;
 use Conquer\Auth\Filters\Request\RegisteredUserRequest;
 
+/** @var RouteCollection $routes */
 $routes->group('', static function ($routes) {
     // Login/Logout
     $routes->get('login', [AuthenticatedSessionController::class, 'create'], ['as' => 'auth.login']);
