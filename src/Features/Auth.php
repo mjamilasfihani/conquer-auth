@@ -9,14 +9,14 @@ class Auth
     /**
      * @var string
      */
-    public const SESSION_NAME = 'user_id';
+    public const DEFINED_SESSION = 'id';
 
     /**
      * @return int|null
      */
     public static function id()
     {
-        return session()->get(self::SESSION_NAME);
+        return session()->get(self::DEFINED_SESSION);
     }
 
     /**
@@ -42,6 +42,6 @@ class Auth
      */
     public static function logout()
     {
-        session()->remove(self::SESSION_NAME);
+        session()->remove(self::DEFINED_SESSION);
     }
 }

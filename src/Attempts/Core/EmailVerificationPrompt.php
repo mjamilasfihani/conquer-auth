@@ -1,6 +1,6 @@
 <?php
 
-namespace Conquer\Auth\Attempts\Trait;
+namespace Conquer\Auth\Attempts\Core;
 
 trait EmailVerificationPrompt
 {

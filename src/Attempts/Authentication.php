@@ -3,12 +3,12 @@
 namespace Conquer\Auth\Attempts;
 
 use CodeIgniter\HTTP\IncomingRequest;
-use Conquer\Auth\Attempts\Trait\AuthenticatedSession;
-use Conquer\Auth\Attempts\Trait\EmailResendVerification;
-use Conquer\Auth\Attempts\Trait\EmailVerificationPrompt;
-use Conquer\Auth\Attempts\Trait\NewPassword;
-use Conquer\Auth\Attempts\Trait\PasswordResetLink;
-use Conquer\Auth\Attempts\Trait\RegisteredUser;
+use Conquer\Auth\Attempts\Core\AuthenticatedSession;
+use Conquer\Auth\Attempts\Core\EmailResendVerification;
+use Conquer\Auth\Attempts\Core\EmailVerificationPrompt;
+use Conquer\Auth\Attempts\Core\NewPassword;
+use Conquer\Auth\Attempts\Core\PasswordResetLink;
+use Conquer\Auth\Attempts\Core\RegisteredUser;
 
 final class Authentication
 {
