@@ -8,10 +8,8 @@ abstract class BaseRequest
 {
     /**
      * Instance of Validation
-     *
-     * @var object
      */
-    protected $validation;
+    protected object $validation;
 
     /**
      * Constructor
