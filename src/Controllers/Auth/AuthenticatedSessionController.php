@@ -2,46 +2,31 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
-use CodeIgniter\Exceptions\PageNotFoundException;
-use Conquer\Auth\Attempts\Authentication;
-use Conquer\Auth\Authorized;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * @return mixed
-     *
-     * @throws PageNotFoundException
      */
-    public function create()
+    public function index()
     {
-        // checking up!!!
-        if (! Authorized::enable('login') || Auth::check() === true) {
-            throw PageNotFoundException::forPageNotFound();
-        }
-
         return 200;
     }
 
     /**
      * @return mixed
      */
-    public function store()
+    public function create()
     {
-        return Authentication::withRequest($this->request)
-            ->authenticatedSessionAttempt()
-            ->getResult();
+        return 200;
     }
 
     /**
      * @return mixed
      */
-    public function destroy()
+    public function delete()
     {
-        Auth::logout();
-
-        return redirect('/');
+        return 200;
     }
 }

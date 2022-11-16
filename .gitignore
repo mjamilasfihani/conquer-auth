@@ -1,5 +1,6 @@
 /vendor/
 /build/
+/src/Helpers/build/
 phpunit*.xml
 phpunit
 *.cache

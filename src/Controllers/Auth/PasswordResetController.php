@@ -4,7 +4,7 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use Conquer\Auth\Controllers\Controller;
 
-class RegisteredUserController extends Controller
+class PasswordResetController extends Controller
 {
     /**
      * @return mixed

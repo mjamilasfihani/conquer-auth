@@ -4,7 +4,7 @@ namespace Conquer\Auth\Controllers\Auth;
 
 use Conquer\Auth\Controllers\Controller;
 
-class EmailResendVerificationController extends Controller
+class EmailVerificationController extends Controller
 {
     /**
      * @return mixed

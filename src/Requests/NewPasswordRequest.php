@@ -1,15 +1,12 @@
 <?php
 
-namespace Conquer\Auth\Filters\Request;
+namespace Conquer\Auth\Requests;
 
-use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Conquer\Auth\Authorized;
-use Conquer\Auth\Features\Auth;
 
-class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
+class NewPasswordRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -27,25 +24,6 @@ class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // checking up!!!
-        if (Authorized::disable('login') || Auth::check()) {
-            throw PageNotFoundException::forPageNotFound();
-        }
-
-        // rule's set
-        $this->validation->setRule('email', lang('Conquer.email'), ['required']);
-        $this->validation->setRule('password', lang('Conquer.password'), ['required']);
-        $this->validation->setRule('remember_me', lang('Conquer.remember_me'), []);
-
-        // checking
-        if (! $this->validation->withRequest($request)->run()) {
-            return redirect('auth.login')
-                ->with('messages', $this->validation->getErrors())
-                ->withInput();
-        }
-
-        // continue
-        return $request;
     }
 
     /**

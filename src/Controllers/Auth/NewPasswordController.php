@@ -2,36 +2,23 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
-use CodeIgniter\Exceptions\PageNotFoundException;
-use Conquer\Auth\Attempts\Authentication;
-use Conquer\Auth\Authorized;
 use Conquer\Auth\Controllers\Controller;
-use Conquer\Auth\Features\Auth;
 
 class NewPasswordController extends Controller
 {
     /**
      * @return mixed
-     *
-     * @throws PageNotFoundException
      */
-    public function create()
+    public function index()
     {
-        // checking up!!!
-        if (! Authorized::enable('forgot') || Auth::check() === true) {
-            throw PageNotFoundException::forPageNotFound();
-        }
-
         return 200;
     }
 
     /**
      * @return mixed
      */
-    public function store()
+    public function create()
     {
-        return Authentication::withRequest($this->request)
-            ->newPasswordAttempt()
-            ->getResult();
+        return 200;
     }
 }

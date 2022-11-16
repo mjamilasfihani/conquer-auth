@@ -1,15 +1,12 @@
 <?php
 
-namespace Conquer\Auth\Filters\Request;
+namespace Conquer\Auth\Requests;
 
-use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Conquer\Auth\Authorized;
-use Conquer\Auth\Features\Auth;
 
-class EmailResendVerificationRequest extends BaseRequest implements FilterInterface
+class AuthenticatedSessionRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -27,12 +24,6 @@ class EmailResendVerificationRequest extends BaseRequest implements FilterInterf
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // checking up!!!
-        if (Authorized::disable('activate') || Auth::check()) {
-            throw PageNotFoundException::forPageNotFound();
-        }
-
-        return $request;
     }
 
     /**

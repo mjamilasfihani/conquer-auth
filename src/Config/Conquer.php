@@ -3,7 +3,6 @@
 namespace Conquer\Auth\Config;
 
 use CodeIgniter\Config\BaseConfig;
-use Conquer\Auth\Authorized;
 
 class Conquer extends BaseConfig
 {
@@ -18,14 +17,4 @@ class Conquer extends BaseConfig
      * i.e $landingRoute = 'dashboard'.
      */
     public string $landingRoute = '/';
-
-    /**
-     * Featured of Conquer\Auth.
-     */
-    public array $features = [
-        'activate' => Authorized::ENABLE,
-        'forgot'   => Authorized::ENABLE,
-        'login'    => Authorized::ENABLE,
-        'register' => Authorized::ENABLE,
-    ];
 }

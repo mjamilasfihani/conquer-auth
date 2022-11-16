@@ -2,13 +2,11 @@
 
 namespace Conquer\Auth\Controllers;
 
-use CodeIgniter\Controller as SystemController;
+use CodeIgniter\Controller as BaseController;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
-use Conquer\Auth\Authorized;
-use Conquer\Auth\Features\Auth;
 
-abstract class Controller extends SystemController
+abstract class Controller extends BaseController
 {
     /**
      * Instance of the main Request object.
@@ -31,9 +29,6 @@ abstract class Controller extends SystemController
      */
     protected function render(string $name, array $data = [], array $options = []): string
     {
-        return view($name, array_merge($data, [
-            'authorized' => new Authorized(),
-            'auth'       => new Auth(),
-        ]), $options);
+        return view($name, $data, $options);
     }
 }
