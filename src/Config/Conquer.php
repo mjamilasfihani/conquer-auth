@@ -17,4 +17,9 @@ class Conquer extends BaseConfig
      * i.e $landingRoute = 'dashboard'.
      */
     public string $landingRoute = '/';
+
+    /**
+     * View's location that setting up as namespace.
+     */
+    public string $viewsNamespace = '\\Conquer\\Auth\\Views';
 }

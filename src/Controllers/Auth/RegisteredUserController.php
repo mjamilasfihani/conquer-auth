@@ -11,7 +11,7 @@ class RegisteredUserController extends Controller
      */
     public function index()
     {
-        return 200;
+        return $this->render("{$this->conquer->viewsNamespace}\\auth\\register");
     }
 
     /**
