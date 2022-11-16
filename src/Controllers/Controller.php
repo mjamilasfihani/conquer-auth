@@ -21,7 +21,7 @@ abstract class Controller extends BaseController
     /**
      * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
-     * to all other controllers that extend BaseController.
+     * to all other controllers that extend Controller.
      *
      * @var array
      */
@@ -49,6 +49,6 @@ abstract class Controller extends BaseController
      */
     protected function render(string $name, array $data = [], array $options = []): string
     {
-        return view($name, $data, $options);
+        return view($name, array_merge($data, ['conquer' => $this->conquer]), $options);
     }
 }
