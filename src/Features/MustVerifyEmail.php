@@ -2,6 +2,6 @@
 
 namespace Conquer\Auth\Features;
 
-class MustSendToEmail
+class MustVerifyEmail
 {
 }

@@ -2,6 +2,6 @@
 
 namespace Conquer\Auth\Features;
 
-class ForceToActivate
+class PasswordResetter
 {
 }

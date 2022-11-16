@@ -3,9 +3,8 @@
 namespace Conquer\Auth\Config;
 
 use CodeIgniter\Config\BaseConfig;
-use Conquer\Auth\Features\ForceToActivate;
-use Conquer\Auth\Features\MustSendToEmail;
-use Conquer\Auth\Features\ResetPassword;
+use Conquer\Auth\Features\MustVerifyEmail;
+use Conquer\Auth\Features\PasswordResetter;
 
 class Conquer extends BaseConfig
 {
@@ -32,6 +31,11 @@ class Conquer extends BaseConfig
     public bool $hasLogin = true;
 
     /**
+     * Forgot Password's feature.
+     */
+    public bool $hasForgot = true;
+
+    /**
      * Registration's feature.
      */
     public bool $registration = true;
@@ -39,19 +43,14 @@ class Conquer extends BaseConfig
     /**
      * Activation's handler.
      *
-     * @var ForceToActivate|MustSendToEmail
+     * Leave it as null, it will force to activate the new users.
      */
-    public $activator = ForceToActivate::class;
-
-    /**
-     * Forgot Password's feature.
-     */
-    public bool $hasForgot = true;
+    public ?MustVerifyEmail $activator = null;
 
     /**
      * Reset Password's handler.
      *
-     * @var ResetPassword|null
+     * Leave it as null, it will do force reset password.
      */
-    public $resetter;
+    public ?PasswordResetter $resetter = null;
 }
