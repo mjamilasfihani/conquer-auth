@@ -2,15 +2,22 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use Conquer\Auth\Controllers\Controller;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * @return mixed
+     *
+     * @throws PageNotFoundException
      */
     public function index()
     {
+        if (! $this->conquer->hasLogin) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
         return $this->render("{$this->conquer->viewsNamespace}\\auth\\login");
     }
 
