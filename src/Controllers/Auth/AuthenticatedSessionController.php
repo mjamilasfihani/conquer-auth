@@ -14,6 +14,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function index()
     {
+        // check the login feature.
         if (! $this->conquer->hasLogin) {
             throw PageNotFoundException::forPageNotFound();
         }

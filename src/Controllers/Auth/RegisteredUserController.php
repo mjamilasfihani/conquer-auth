@@ -14,6 +14,7 @@ class RegisteredUserController extends Controller
      */
     public function index()
     {
+        // check the registration feature.
         if (! $this->conquer->registration) {
             throw PageNotFoundException::forPageNotFound();
         }

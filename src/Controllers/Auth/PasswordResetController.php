@@ -14,6 +14,7 @@ class PasswordResetController extends Controller
      */
     public function index()
     {
+        // check the forgot password feature.
         if (! $this->conquer->hasForgot) {
             throw PageNotFoundException::forPageNotFound();
         }

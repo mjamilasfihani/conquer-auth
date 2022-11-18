@@ -2,11 +2,12 @@
 
 namespace Conquer\Auth\Requests;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class PasswordResetRequest implements FilterInterface
+class PasswordResetRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -24,6 +25,10 @@ class PasswordResetRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        // check the forgot password feature.
+        if (! $this->conquer->hasForgot) {
+            throw PageNotFoundException::forPageNotFound();
+        }
     }
 
     /**

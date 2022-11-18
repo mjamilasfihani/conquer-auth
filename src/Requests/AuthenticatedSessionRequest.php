@@ -2,11 +2,12 @@
 
 namespace Conquer\Auth\Requests;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AuthenticatedSessionRequest implements FilterInterface
+class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -24,6 +25,10 @@ class AuthenticatedSessionRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        // check the login feature.
+        if (! $this->conquer->hasLogin) {
+            throw PageNotFoundException::forPageNotFound();
+        }
     }
 
     /**
