@@ -17,7 +17,7 @@ Usage of Conquer\Auth requires the following:
 Use the package manager [composer](https://getcomposer.org/) to install.
 
 ```bash
-composer install mjamilasfihani/conquer-auth
+composer require mjamilasfihani/conquer-auth
 ```
 
 ## Usage

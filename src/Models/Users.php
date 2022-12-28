@@ -3,6 +3,7 @@
 namespace Conquer\Auth\Models;
 
 use CodeIgniter\Model;
+use Conquer\Auth\Entities\Users as UserEntity;
 
 class Users extends Model
 {
@@ -11,7 +12,7 @@ class Users extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = UserEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
