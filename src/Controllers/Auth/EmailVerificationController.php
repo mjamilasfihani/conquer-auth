@@ -9,7 +9,7 @@ class EmailVerificationController extends Controller
     /**
      * @return mixed
      */
-    public function action()
+    public function update()
     {
         return 200;
     }

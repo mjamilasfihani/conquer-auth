@@ -28,8 +28,8 @@ $routes->group('', static function ($routes) {
     $routes->post('register', [RegisteredUserController::class, 'create'], ['filter' => RegisteredUserRequest::class]);
 
     // Activation
-    $routes->get('activate', [EmailVerificationController::class, 'action'], ['as' => 'auth.activate', 'filter' => EmailVerificationRequest::class]);
-    $routes->get('resend', [EmailResendVerificationController::class, 'action'], ['as' => 'auth.resend', 'filter' => EmailResendVerificationRequest::class]);
+    $routes->get('activate', [EmailVerificationController::class, 'update'], ['as' => 'auth.activate', 'filter' => EmailVerificationRequest::class]);
+    $routes->get('resend', [EmailResendVerificationController::class, 'update'], ['as' => 'auth.resend', 'filter' => EmailResendVerificationRequest::class]);
 
     // Forgot/Reset Password
     $routes->get('forgot', [PasswordResetController::class, 'index'], ['as' => 'auth.forgot']);

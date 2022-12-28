@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Conquer\Auth\Config\Conquer;
 use Psr\Log\LoggerInterface;
 
 abstract class Controller extends BaseController
@@ -28,7 +29,7 @@ abstract class Controller extends BaseController
     protected $helpers = ['conquer'];
 
     /**
-     * @var object
+     * @var Conquer
      */
     protected $conquer;
 
@@ -41,7 +42,7 @@ abstract class Controller extends BaseController
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-        $this->conquer = config('Conquer');
+        $this->conquer = config(Conquer::class);
     }
 
     /**
