@@ -40,7 +40,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->parallel();
     // The paths to refactor (can also be supplied with CLI arguments)
     $rectorConfig->paths([
-        __DIR__ . '/app/',
+        __DIR__ . '/src/',
         __DIR__ . '/tests/',
     ]);
 
@@ -66,7 +66,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     // Are there files or rules you need to skip?
     $rectorConfig->skip([
-        __DIR__ . '/app/Views',
+        __DIR__ . '/src/Views',
 
         JsonThrowOnErrorRector::class,
         StringifyStrNeedlesRector::class,
@@ -81,7 +81,7 @@ return static function (RectorConfig $rectorConfig): void {
 
         // Ignore files that should not be namespaced
         NormalizeNamespaceByPSR4ComposerAutoloadRector::class => [
-            __DIR__ . '/app/Helpers',
+            __DIR__ . '/src/Helpers',
         ],
 
         // May load view files directly when detecting classes
