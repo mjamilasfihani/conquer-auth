@@ -5,7 +5,7 @@ namespace Conquer\Auth\Models;
 use CodeIgniter\Model;
 use Conquer\Auth\Entities\Users as UserEntity;
 
-class Users extends Model
+class Users extends Model implements NeedVerification
 {
     protected $DBGroup          = 'default';
     protected $table            = 'users';

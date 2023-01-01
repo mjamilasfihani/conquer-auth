@@ -1,12 +1,12 @@
 <?php
 
+use CodeIgniter\Test\CIUnitTestCase;
 use Conquer\Auth\Auth;
-use Tests\Support\ConquerAuthTestCase;
 
 /**
  * @internal
  */
-final class ConquerHelperTest extends ConquerAuthTestCase
+final class ConquerHelperTest extends CIUnitTestCase
 {
     protected function setUp(): void
     {

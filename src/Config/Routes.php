@@ -3,37 +3,31 @@
 namespace Conquer\Auth\Config;
 
 use CodeIgniter\Router\RouteCollection;
-use Conquer\Auth\Controllers\Auth\AuthenticatedSessionController;
-use Conquer\Auth\Controllers\Auth\EmailResendVerificationController;
-use Conquer\Auth\Controllers\Auth\EmailVerificationController;
-use Conquer\Auth\Controllers\Auth\NewPasswordController;
-use Conquer\Auth\Controllers\Auth\PasswordResetController;
-use Conquer\Auth\Controllers\Auth\RegisteredUserController;
-use Conquer\Auth\Requests\AuthenticatedSessionRequest;
-use Conquer\Auth\Requests\EmailResendVerificationRequest;
-use Conquer\Auth\Requests\EmailVerificationRequest;
-use Conquer\Auth\Requests\NewPasswordRequest;
-use Conquer\Auth\Requests\PasswordResetRequest;
-use Conquer\Auth\Requests\RegisteredUserRequest;
+use Conquer\Auth\Auth;
 
-/** @var RouteCollection $routes */
+/**
+ * @var RouteCollection $routes
+ */
 $routes->group('', static function ($routes) {
+    // Load Configuration
+    $config = Auth::config();
+
     // Login/Logout
-    $routes->get('login', [AuthenticatedSessionController::class, 'index'], ['as' => 'auth.login']);
-    $routes->post('login', [AuthenticatedSessionController::class, 'create'], ['filter' => AuthenticatedSessionRequest::class]);
-    $routes->get('logout', [AuthenticatedSessionController::class, 'delete'], ['as' => 'auth.logout']);
+    $routes->get('login', [$config->authenticatedSessionController, 'index'], ['as' => 'auth.login']);
+    $routes->post('login', [$config->authenticatedSessionController, 'create'], ['filter' => $config->authenticatedSessionController::VALIDATION_CLASS]);
+    $routes->get('logout', [$config->authenticatedSessionController, 'delete'], ['as' => 'auth.logout']);
 
     // Registration
-    $routes->get('register', [RegisteredUserController::class, 'index'], ['as' => 'auth.register']);
-    $routes->post('register', [RegisteredUserController::class, 'create'], ['filter' => RegisteredUserRequest::class]);
+    $routes->get('register', [$config->registeredUserController, 'index'], ['as' => 'auth.register']);
+    $routes->post('register', [$config->registeredUserController, 'create'], ['filter' => $config->registeredUserController::VALIDATION_CLASS]);
 
-    // Activation
-    $routes->get('activate', [EmailVerificationController::class, 'update'], ['as' => 'auth.activate', 'filter' => EmailVerificationRequest::class]);
-    $routes->get('resend', [EmailResendVerificationController::class, 'update'], ['as' => 'auth.resend', 'filter' => EmailResendVerificationRequest::class]);
+    // Activation/Resend Account
+    $routes->get('activate', [$config->emailVerificationController, 'update'], ['as' => 'auth.activate', 'filter' => $config->emailVerificationController::VALIDATION_CLASS]);
+    $routes->get('resend', [$config->emailResendVerificationController, 'update'], ['as' => 'auth.resend', 'filter' => $config->emailResendVerificationController::VALIDATION_CLASS]);
 
     // Forgot/Reset Password
-    $routes->get('forgot', [PasswordResetController::class, 'index'], ['as' => 'auth.forgot']);
-    $routes->post('forgot', [PasswordResetController::class, 'create'], ['filter' => PasswordResetRequest::class]);
-    $routes->get('reset', [NewPasswordController::class, 'index'], ['as' => 'auth.reset']);
-    $routes->post('reset', [NewPasswordController::class, 'create'], ['filter' => NewPasswordRequest::class]);
+    $routes->get('forgot', [$config->passwordResetController, 'index'], ['as' => 'auth.forgot']);
+    $routes->post('forgot', [$config->passwordResetController, 'create'], ['filter' => $config->passwordResetController::VALIDATION_CLASS]);
+    $routes->get('reset', [$config->newPasswordController, 'index'], ['as' => 'auth.reset']);
+    $routes->post('reset', [$config->newPasswordController, 'create'], ['filter' => $config->newPasswordController::VALIDATION_CLASS]);
 });

@@ -2,9 +2,11 @@
 
 namespace Conquer\Auth\Requests;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Conquer\Auth\Auth;
 
 class RegisteredUserRequest implements FilterInterface
 {
@@ -24,6 +26,15 @@ class RegisteredUserRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        // Make sure you have the access to do the action
+        if (Auth::config()->disabledRegistration) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        // prevent access for user that has session already
+        if (Auth::check()) {
+            return redirect()->to(Auth::landing());
+        }
     }
 
     /**

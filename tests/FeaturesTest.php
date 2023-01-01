@@ -1,39 +1,40 @@
 <?php
 
+use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\FeatureTestTrait;
-use Tests\Support\ConquerAuthTestCase;
+use Conquer\Auth\Auth;
 
 /**
  * @internal
  */
-final class FeaturesTest extends ConquerAuthTestCase
+final class FeaturesTest extends CIUnitTestCase
 {
     use FeatureTestTrait;
 
-    public function testHasActivateFeature()
+    public function testHasLoginFeatures()
     {
-        $this->get('activate')->assertIsInt(200);
-        $this->get('resend')->assertIsInt(200);
+        $this->get('login')->assertOK();
+        $this->post('login')->assertRedirectTo(Auth::landing());
+        $this->get('logout')->assertRedirectTo(route_to('auth.login'));
     }
 
-    public function testHasForgotFeature()
+    public function testHasRegisterFeatures()
     {
-        $this->get('forgot')->assertIsString('200');
-        $this->post('forgot')->assertIsInt(200);
-        $this->get('reset')->assertIsString('200');
-        $this->post('reset')->assertIsInt(200);
+        $this->get('register')->assertOK();
+        $this->post('register')->assertRedirectTo(route_to('auth.resend'));
     }
 
-    public function testHasLoginFeature()
+    public function testHasActivateFeatures()
     {
-        $this->get('login')->assertIsString('200');
-        $this->post('login')->assertIsInt(200);
-        $this->get('logout')->assertIsInt(200);
+        $this->get('activate')->assertRedirectTo(route_to('auth.login'));
+        $this->get('resend')->assertRedirectTo(route_to('auth.login'));
     }
 
-    public function testHasRegisterFeature()
+    public function testHasForgotFeatures()
     {
-        $this->get('register')->assertIsString('200');
-        $this->post('register')->assertIsInt(200);
+        $this->get('forgot')->assertOK();
+        $this->post('forgot')->assertRedirectTo(route_to('auth.login'));
+        $this->get('reset')->assertOK();
+        $this->post('reset')->assertRedirectTo(route_to('auth.login'));
     }
 }

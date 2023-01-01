@@ -2,9 +2,12 @@
 
 namespace Conquer\Auth\Requests;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Conquer\Auth\Auth;
+use Conquer\Auth\Models\NeedVerification;
 
 class EmailResendVerificationRequest implements FilterInterface
 {
@@ -24,6 +27,15 @@ class EmailResendVerificationRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        // prevent access if the user not implement the verification
+        if (! in_array(NeedVerification::class, class_implements(Auth::config()->userModel), true)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        // prevent access for user that has session already
+        if (Auth::check()) {
+            return redirect()->to(Auth::landing());
+        }
     }
 
     /**
