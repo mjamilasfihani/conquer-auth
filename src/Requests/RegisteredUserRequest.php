@@ -6,9 +6,8 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Conquer\Auth\Auth;
 
-class RegisteredUserRequest implements FilterInterface
+class RegisteredUserRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -26,14 +25,14 @@ class RegisteredUserRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Make sure you have the access to do the action
-        if (Auth::config()->disabledRegistration) {
-            throw PageNotFoundException::forPageNotFound();
+        // prevent access for user that has session already
+        if ($this->isLoggedIn) {
+            return redirect()->to(base_url($this->conquer::HOME_PATH));
         }
 
-        // prevent access for user that has session already
-        if (Auth::check()) {
-            return redirect()->to(Auth::landing());
+        // make sure you have the access to do the action
+        if ($this->model::registrationingMemberIsDisabled()) {
+            throw PageNotFoundException::forPageNotFound();
         }
     }
 

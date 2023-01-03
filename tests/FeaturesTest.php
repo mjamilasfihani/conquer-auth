@@ -13,8 +13,11 @@ final class FeaturesTest extends CIUnitTestCase
 
     public function testHasLoginFeatures()
     {
+        // initialize the config
+        $config = Auth::config();
+
         $this->get('login')->assertOK();
-        $this->post('login')->assertRedirectTo(Auth::landing());
+        $this->post('login')->assertRedirectTo(base_url($config::HOME_PATH));
         $this->get('logout')->assertRedirectTo(route_to('auth.login'));
     }
 

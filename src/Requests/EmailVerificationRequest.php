@@ -6,10 +6,8 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Conquer\Auth\Auth;
-use Conquer\Auth\Models\NeedVerification;
 
-class EmailVerificationRequest implements FilterInterface
+class EmailVerificationRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -27,14 +25,14 @@ class EmailVerificationRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // prevent access if the user not implement the verification
-        if (! in_array(NeedVerification::class, class_implements(Auth::config()->userModel), true)) {
-            throw PageNotFoundException::forPageNotFound();
+        // prevent access for user that has session already
+        if ($this->isLoggedIn) {
+            return redirect()->to(base_url($this->conquer::HOME_PATH));
         }
 
-        // prevent access for user that has session already
-        if (Auth::check()) {
-            return redirect()->to(Auth::landing());
+        // prevent access for activation
+        if ($this->model::forcingActivationAccountIsDisabled()) {
+            throw PageNotFoundException::forPageNotFound();
         }
     }
 

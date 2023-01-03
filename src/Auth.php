@@ -2,35 +2,40 @@
 
 namespace Conquer\Auth;
 
+use Config\Conquer as Config;
 use Conquer\Auth\Config\Conquer;
-use Conquer\Auth\Models\Users;
+use Conquer\Auth\Models\Users as UserModel;
 
 class Auth implements AuthInterface
 {
     /**
      * Instance of the configuration file.
      */
-    public static function config(?string $key = null): Conquer
+    public static function config(): Conquer
     {
-        $config = config('Conquer');
+        // initialize
+        $class = class_exists(Config::class) ? Config::class : Conquer::class;
 
-        return null === $key ? $config : $config->{$key};
+        return config($class);
     }
 
     /**
-     * Location after the authentication is success.
+     * Instance of the user model.
      */
-    public static function landing(?string $force = null): string
+    public static function model(): UserModel
     {
-        return base_url($force ?? self::config()->landingRoute);
+        // initialize
+        $config = self::config();
+
+        return new $config->userModel();
     }
 
     /**
-     * Instance of user's Entity.
+     * Instance of user's object.
      */
-    public static function user()
+    public static function user(): object
     {
-        return [];
+        return self::config();
     }
 
     /**
@@ -56,8 +61,6 @@ class Auth implements AuthInterface
      */
     public static function attempt(string $email, string $password, bool $remember_me = false): bool
     {
-        new Users();
-
         return true;
     }
 

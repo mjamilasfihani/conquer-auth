@@ -2,6 +2,8 @@
 
 namespace Conquer\Auth\Controllers\Auth;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\HTTP\RedirectResponse;
 use Conquer\Auth\Controllers\Controller;
 use Conquer\Auth\Requests\NewPasswordRequest;
 
@@ -13,15 +15,27 @@ class NewPasswordController extends Controller
     public const VALIDATION_CLASS = NewPasswordRequest::class;
 
     /**
-     * @return string
+     * @return RedirectResponse|string
+     *
+     * @throws PageNotFoundException
      */
     public function index()
     {
+        // prevent access for user that has session already
+        if ($this->isLoggedIn) {
+            return redirect()->to(base_url($this->conquer::HOME_PATH));
+        }
+
+        // make sure you have the access to do the action
+        if ($this->model::creatingNewPasswordIsDisabled()) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
         return $this->render($this->conquer->getForgotViewPath());
     }
 
     /**
-     * @return mixed
+     * @return RedirectResponse
      */
     public function create()
     {

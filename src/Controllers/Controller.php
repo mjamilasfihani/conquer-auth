@@ -9,6 +9,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Conquer\Auth\Auth;
 use Conquer\Auth\Config\Conquer;
+use Conquer\Auth\Models\Users as UserModel;
 use Psr\Log\LoggerInterface;
 
 abstract class Controller extends BaseController
@@ -35,6 +36,18 @@ abstract class Controller extends BaseController
     protected Conquer $conquer;
 
     /**
+     * Instance of `\Conquer\Auth\Auth::check()`
+     *
+     * @var bool
+     */
+    protected $isLoggedIn;
+
+    /**
+     * Instance of Model
+     */
+    protected UserModel $model;
+
+    /**
      * Constructor.
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -43,7 +56,9 @@ abstract class Controller extends BaseController
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-        $this->conquer = Auth::config();
+        $this->conquer    = Auth::config();
+        $this->isLoggedIn = Auth::check();
+        $this->model      = Auth::model();
     }
 
     /**

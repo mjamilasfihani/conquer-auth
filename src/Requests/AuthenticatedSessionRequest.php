@@ -5,9 +5,8 @@ namespace Conquer\Auth\Requests;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Conquer\Auth\Auth;
 
-class AuthenticatedSessionRequest implements FilterInterface
+class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -26,8 +25,8 @@ class AuthenticatedSessionRequest implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // prevent access for user that has session already
-        if (Auth::check()) {
-            return redirect()->to(Auth::landing());
+        if ($this->isLoggedIn) {
+            return redirect()->to(base_url($this->conquer::HOME_PATH));
         }
     }
 

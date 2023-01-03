@@ -5,17 +5,9 @@ namespace Conquer\Auth\Config\Traits\Configuration;
 trait WithViewModifierConfiguration
 {
     /**
-     * Force to set the `$viewedNamespace` variable.
-     */
-    public function setViewedNamespace(string $namespace)
-    {
-        $this->viewedNamespace = $namespace;
-
-        return $this;
-    }
-
-    /**
      * Force to set the `$viewsPath` variable. You must provide the key too.
+     *
+     * @return $this
      */
     public function setViewsPath(string $key, string $path)
     {
@@ -26,6 +18,8 @@ trait WithViewModifierConfiguration
 
     /**
      * Force to set the `$viewLayout` variable.
+     *
+     * @return $this
      */
     public function setViewLayout(string $path)
     {

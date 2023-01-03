@@ -2,17 +2,18 @@
 
 namespace Conquer\Auth\Models;
 
-use CodeIgniter\Model;
-use Conquer\Auth\Entities\Users as UserEntity;
+use Conquer\Auth\Models\Traits\Authorization;
 
-class Users extends Model implements NeedVerification
+class Users extends BaseModel
 {
+    use Authorization;
+
     protected $DBGroup          = 'default';
     protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = UserEntity::class;
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
@@ -40,4 +41,22 @@ class Users extends Model implements NeedVerification
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    // Authorize to Force user do activation
+    public static function authorizeForForcingActivationAccount(): bool
+    {
+        return true;
+    }
+
+    // Authorize to Registration new member
+    public static function authorizeForRegistrationingMember(): bool
+    {
+        return true;
+    }
+
+    // Authorize to Forgot & Reset Password
+    public static function authorizeForCreatingNewPassword(): bool
+    {
+        return true;
+    }
 }

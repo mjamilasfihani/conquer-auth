@@ -3,23 +3,24 @@
 namespace Conquer\Auth;
 
 use Conquer\Auth\Config\Conquer;
+use Conquer\Auth\Models\Users as UserModel;
 
 interface AuthInterface
 {
     /**
      * Instance of the configuration file.
      */
-    public static function config(?string $key = null): Conquer;
+    public static function config(): Conquer;
 
     /**
-     * Location after the authentication is success.
+     * Instance of the user model.
      */
-    public static function landing(?string $force = null): string;
+    public static function model(): UserModel;
 
     /**
-     * Instance of user's Entity.
+     * Instance of user's object.
      */
-    public static function user();
+    public static function user(): object;
 
     /**
      * Get the User's ID.

@@ -4,13 +4,8 @@ namespace Conquer\Auth\Config;
 
 use CodeIgniter\Config\BaseConfig;
 use Conquer\Auth\Config\Traits\WithViewModifier;
-use Conquer\Auth\Controllers\Auth\AuthenticatedSessionController;
-use Conquer\Auth\Controllers\Auth\EmailResendVerificationController;
-use Conquer\Auth\Controllers\Auth\EmailVerificationController;
-use Conquer\Auth\Controllers\Auth\NewPasswordController;
-use Conquer\Auth\Controllers\Auth\PasswordResetController;
-use Conquer\Auth\Controllers\Auth\RegisteredUserController;
-use Conquer\Auth\Models\Users;
+use Conquer\Auth\Controllers\Auth as Controllers;
+use Conquer\Auth\Models\Users as UserModel;
 
 class Conquer extends BaseConfig
 {
@@ -18,25 +13,18 @@ class Conquer extends BaseConfig
     use WithViewModifier;
 
     /**
-     * App Name
+     * Where should user went?
      *
      * @var string
      */
-    public $appName = 'ConquerAuth';
+    public const HOME_PATH = '/dashboard';
 
     /**
-     * Landing Route
+     * Your Site Name
      *
      * @var string
      */
-    public $landingRoute = '/dashboard';
-
-    /**
-     * View's Namespace
-     *
-     * @var string
-     */
-    public $viewedNamespace = 'Conquer\Auth';
+    public $siteName = 'ConquerAuth';
 
     /**
      * View's Location
@@ -44,10 +32,10 @@ class Conquer extends BaseConfig
      * @var array
      */
     public $viewsPath = [
-        'login'    => 'auth/login',
-        'register' => 'auth/register',
-        'forgot'   => 'auth/forgot',
-        'reset'    => 'auth/reset',
+        'login'    => 'Conquer\Auth\auth\login',
+        'register' => 'Conquer\Auth\auth\register',
+        'forgot'   => 'Conquer\Auth\auth\forgot',
+        'reset'    => 'Conquer\Auth\auth\reset',
     ];
 
     /**
@@ -55,68 +43,26 @@ class Conquer extends BaseConfig
      *
      * @var string
      */
-    public $viewLayout = 'layouts/guest';
+    public $viewLayout = 'Conquer\Auth\layouts\guest';
 
     /**
-     * Login/Logout Controller
+     * Defined Controllers
+     *
+     * @var array
+     */
+    public $controllers = [
+        'authenticatedSessionController'    => Controllers\AuthenticatedSessionController::class,
+        'registeredUserController'          => Controllers\RegisteredUserController::class,
+        'emailVerificationController'       => Controllers\EmailVerificationController::class,
+        'emailResendVerificationController' => Controllers\EmailResendVerificationController::class,
+        'passwordResetController'           => Controllers\PasswordResetController::class,
+        'newPasswordController'             => Controllers\NewPasswordController::class,
+    ];
+
+    /**
+     * Setting up the User Model
      *
      * @var string
      */
-    public $authenticatedSessionController = AuthenticatedSessionController::class;
-
-    /**
-     * Registration Controller
-     *
-     * @var string
-     */
-    public $registeredUserController = RegisteredUserController::class;
-
-    /**
-     * Activation Account Controller
-     *
-     * @var string
-     */
-    public $emailVerificationController = EmailVerificationController::class;
-
-    /**
-     * Resend Activation Account Controller
-     *
-     * @var string
-     */
-    public $emailResendVerificationController = EmailResendVerificationController::class;
-
-    /**
-     * Forgot Password Controller
-     *
-     * @var string
-     */
-    public $passwordResetController = PasswordResetController::class;
-
-    /**
-     * Reset Password Controller
-     *
-     * @var string
-     */
-    public $newPasswordController = NewPasswordController::class;
-
-    /**
-     * Give access to registration.
-     *
-     * @var bool
-     */
-    public $disabledRegistration = false;
-
-    /**
-     * Enable/Disabled Forgot Password feature
-     *
-     * @var bool
-     */
-    public $preventToReset = false;
-
-    /**
-     * Everything we done was from model
-     *
-     * @var string
-     */
-    public $userModel = Users::class;
+    public $userModel = UserModel::class;
 }
