@@ -2,6 +2,8 @@
 
 namespace Conquer\Auth\Requests;
 
+use CodeIgniter\Validation\Validation;
+use Config\Services;
 use Conquer\Auth\Auth;
 use Conquer\Auth\Config\Conquer;
 use Conquer\Auth\Models\Users as UserModel;
@@ -26,6 +28,11 @@ abstract class BaseRequest
     protected UserModel $model;
 
     /**
+     * Instance of Validation
+     */
+    protected Validation $validation;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -34,5 +41,6 @@ abstract class BaseRequest
         $this->conquer    = Auth::config();
         $this->isLoggedIn = Auth::check();
         $this->model      = Auth::model();
+        $this->validation = Services::validation();
     }
 }

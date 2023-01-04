@@ -10,6 +10,16 @@ use CodeIgniter\HTTP\ResponseInterface;
 class NewPasswordRequest extends BaseRequest implements FilterInterface
 {
     /**
+     * Rules
+     */
+    private array $rules = [
+        'key'                   => ['required'],
+        'email'                 => ['required'],
+        'password'              => ['required'],
+        'password_confirmation' => ['required'],
+    ];
+
+    /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
      * normal execution. However, when an abnormal state
@@ -33,6 +43,13 @@ class NewPasswordRequest extends BaseRequest implements FilterInterface
         // make sure you have the access to do the action
         if ($this->model::creatingNewPasswordIsDisabled()) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        $validation  = $this->validation->setRules($this->rules);
+        $withRequest = $validation->withRequest($request);
+
+        if ($withRequest->run() === false) {
+            return redirect()->route('auth.reset')->withInput()->with('errors', $this->validation->getErrors());
         }
     }
 

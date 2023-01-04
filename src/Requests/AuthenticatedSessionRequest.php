@@ -9,6 +9,14 @@ use CodeIgniter\HTTP\ResponseInterface;
 class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
 {
     /**
+     * Rules
+     */
+    private array $rules = [
+        'email'    => ['required'],
+        'password' => ['required', 'min_length[8]'],
+    ];
+
+    /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
      * normal execution. However, when an abnormal state
@@ -27,6 +35,13 @@ class AuthenticatedSessionRequest extends BaseRequest implements FilterInterface
         // prevent access for user that has session already
         if ($this->isLoggedIn) {
             return redirect()->to(base_url($this->conquer::HOME_PATH));
+        }
+
+        $validation  = $this->validation->setRules($this->rules);
+        $withRequest = $validation->withRequest($request);
+
+        if ($withRequest->run() === false) {
+            return redirect()->route('auth.login')->withInput()->with('errors', $this->validation->getErrors());
         }
     }
 

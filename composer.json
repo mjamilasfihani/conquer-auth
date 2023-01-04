@@ -68,6 +68,6 @@
         "style": "@cs-fix",
         "deduplicate": "phpcpd src/ tests/",
         "inspect": "deptrac analyze --cache-file=build/deptrac.cache",
-        "test": "./vendor/bin/phpunit"
+        "test": "./vendor/bin/phpunit --testdox"
     }
 }

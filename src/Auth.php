@@ -26,8 +26,9 @@ class Auth implements AuthInterface
     {
         // initialize
         $config = self::config();
+        $model  = $config->userModel;
 
-        return new $config->userModel();
+        return new $model();
     }
 
     /**
@@ -35,7 +36,11 @@ class Auth implements AuthInterface
      */
     public static function user(): object
     {
-        return self::config();
+        // initialize
+        $id    = self::id();
+        $model = self::model();
+
+        return $model->find($id);
     }
 
     /**
@@ -53,7 +58,10 @@ class Auth implements AuthInterface
      */
     public static function check(): bool
     {
-        return null !== self::id();
+        // initialize
+        $id = self::id();
+
+        return null !== $id;
     }
 
     /**

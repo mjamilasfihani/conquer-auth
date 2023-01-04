@@ -6,6 +6,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Conquer\Auth\Validation\Password;
 
 class RegisteredUserRequest extends BaseRequest implements FilterInterface
 {
@@ -25,14 +26,30 @@ class RegisteredUserRequest extends BaseRequest implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // prevent access for user that has session already
         if ($this->isLoggedIn) {
-            return redirect()->to(base_url($this->conquer::HOME_PATH));
+            return redirect()->to($this->conquer::HOME_PATH);
         }
 
-        // make sure you have the access to do the action
         if ($this->model::registrationingMemberIsDisabled()) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        // name field
+        $rules['name']['label'] = 'name';
+        $rules['name']['rules'] = ['required', 'string', 'max_length[255]'];
+
+        // email field
+        $rules['email']['label'] = 'email';
+        $rules['email']['rules'] = ['required', 'string', 'valid_email', 'max_length[255]', 'is_unique[users.email]'];
+
+        // password & password_confirmation field
+        $rules = array_merge($rules, ['password' => Password::default('password', 'password confirmation')]);
+
+        $validation  = $this->validation->setRules($rules);
+        $withRequest = $validation->withRequest($request);
+
+        if ($withRequest->run() === false) {
+            return redirect('auth.register')->withInput()->with('errors', $this->validation->getErrors());
         }
     }
 

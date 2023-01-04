@@ -8,7 +8,7 @@ class Users extends BaseModel
 {
     use Authorization;
 
-    protected $DBGroup          = 'default';
+    // protected $DBGroup          = 'default';
     protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -16,7 +16,11 @@ class Users extends BaseModel
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'name',
+        'email',
+        'password',
+    ];
 
     // Dates
     protected $useTimestamps = false;

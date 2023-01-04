@@ -6,6 +6,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\RedirectResponse;
 use Conquer\Auth\Controllers\Controller;
 use Conquer\Auth\Requests\RegisteredUserRequest;
+use Throwable;
 
 class RegisteredUserController extends Controller
 {
@@ -21,12 +22,10 @@ class RegisteredUserController extends Controller
      */
     public function index()
     {
-        // prevent access for user that has session already
         if ($this->isLoggedIn) {
-            return redirect()->to(base_url($this->conquer::HOME_PATH));
+            return redirect()->to($this->conquer::HOME_PATH);
         }
 
-        // make sure you have the access to do the action
         if ($this->model::registrationingMemberIsDisabled()) {
             throw PageNotFoundException::forPageNotFound();
         }
@@ -39,6 +38,16 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return redirect()->route('auth.resend');
+        try {
+            $this->model->insert([
+                'name'     => (string) $this->request->getPost('name'),
+                'email'    => (string) $this->request->getPost('email'),
+                'password' => password_hash((string) $this->request->getPost('password'), PASSWORD_DEFAULT),
+            ]);
+        } catch (Throwable $e) {
+            return redirect('auth.register')->with('error', 'Whoops! Please try again later.');
+        }
+
+        return redirect('auth.login');
     }
 }
